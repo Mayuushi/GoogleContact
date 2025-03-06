@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Contact</title>
+</head>
+<body>
+<h2>Edit Contact</h2>
+<p>DEBUG: Contact ID = <span th:text="${contact.id}"></span></p>
+<p>DEBUG: First Name = <span th:text="${contact.givenName}"></span></p>
+<p>DEBUG: Last Name = <span th:text="${contact.familyName}"></span></p>
+<p>DEBUG: Email = <span th:text="${contact.email}"></span></p>
+<p>DEBUG: Phone = <span th:text="${contact.phone}"></span></p>
+
+<!-- Correct the form action URL to map to the right controller method -->
+<form th:action="@{/contacts/update/{id}(id=${contact.id})}" method="post">
+    <input type="hidden" name="id" th:value="${contact.id}" />
+
+    <label>First Name:</label>
+    <input type="text" name="firstName" th:value="${contact.givenName}" required /><br>
+
+    <label>Last Name:</label>
+    <input type="text" name="lastName" th:value="${contact.familyName}" required /><br>
+
+    <label>Email:</label>
+    <input type="email" name="email" th:value="${contact.email}" /><br>
+
+    <label>Phone:</label>
+    <input type="text" name="phone" th:value="${contact.phone}" /><br>
+
+    <button type="submit">Save Changes</button>
+</form>
+
+<a href="/contacts">Back to Contacts</a>
+</body>
+</html>
